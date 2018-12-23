@@ -14,6 +14,7 @@ gc()
 #Library packages required
 library(car)
 library(gtools)
+library(data.table)
 
 #Set Working Directory
 setwd("C:\\R_projects\\OAC")
@@ -21,6 +22,20 @@ setwd("C:\\R_projects\\OAC")
 #Data inputs
 OAC_Input_Lookup <- read.csv("file:///C:/R_projects/OAC/downloaded data/2011 OAC 60 Variables/2011_OAC_Raw_kVariables_Lookup.csv",sep=",")
 OAC_Input <- read.csv("file:///C:/R_projects/OAC/downloaded data/2011 OAC 60 Variables/2011_OAC_Raw_kVariables.csv",sep=",")
+
+## code to select area to do analysis on - regional ? just LBBD? EastLondon?
+library(dplyr)
+
+### get oa la lookup 
+
+OA_LAD_RegionLUP <- fread("file:///C:/R_projects/OAC/downloaded data/2011 OA Population and Lookup.csv") %>% 
+  filter(LOCAL_AUTHORITY_NAME == "Barking and Dagenham") %>% 
+  select(OA) %>% 
+  left_join(OAC_Input)
+
+OAC_Input <- OA_LAD_RegionLUP
+
+
 
 #Which Transformation technique would you like to use - Inverse Hyperbolic Sine (IHS) or Box-Cox?
 #Enter "IHS" or "BOXCOX"
@@ -39,8 +54,19 @@ HatLoops <-20
 #Number of Clusters you would like
 CN <- 8
 
+# This section sets the number of times to run k means - is stochastic, so varies probabilitically - we need a decent
+# averaged mean of means so need a decent number of runs to avoid "chance clustering"
+
 #Number of k-means loops to perform (The recommended minimum is 1000)
-KM <- 1
+
+# for LBBD data on my home laptop
+# 10000 takes 17.94 mins
+# 1000 takes 1.8 mins
+# 100 takes 11.7 secs
+
+### however each version has produced same clusters!!!  
+
+KM <- 100
 
 ####################################################################################################
 # Calculate Percentages ############################################################################
@@ -233,7 +259,7 @@ colnames(OAC_Converted_Transformed_Range)[1]<-"OA"
 if(RQOUTPUT=="YES")
 {
   dir.create("Pre-Cluster Data", showWarnings = FALSE)
-  write.table(OAC_Converted_Transformed_Range, paste("Pre-Cluster Data/03_OAC_Percentages_Transformed_Range.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+  write.table(OAC_Converted_Transformed_Range, paste("lbbddata/Pre-Cluster Data/03_OAC_Percentages_Transformed_Range.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
 }
 
 ####################################################################################################
@@ -251,18 +277,19 @@ OA<-OAC_Converted_Transformed_Range_Raw_Input[1]
 
 OA_Num <-nrow(OA)
 
-OAC_Converted_Transformed_Range_Raw_Input_Clusters <- OAC_Converted_Transformed_Range_Raw_Input[grep("Cluster",names(OAC_Converted_Transformed_Range_Raw_Input),)]
+OAC_Converted_Transformed_Range_Raw_Input_Clusters <- OAC_Converted_Transformed_Range_Raw_Input[grep("Cluster",names(OAC_Converted_Transformed_Range_Raw_Input))]
+
 OAC_Converted_Transformed_Range_Raw_Input_Type_Num <-ncol(OAC_Converted_Transformed_Range_Raw_Input_Clusters)
 if(OAC_Converted_Transformed_Range_Raw_Input_Type_Num>0)
 {
-  OAC_Converted_Transformed_Range_Input <- OAC_Converted_Transformed_Range_Raw_Input[-grep("Cluster",names(OAC_Converted_Transformed_Range_Raw_Input),)]
+  OAC_Converted_Transformed_Range_Input <- OAC_Converted_Transformed_Range_Raw_Input[-grep("Cluster",names(OAC_Converted_Transformed_Range_Raw_Input))]
 } else
 {
   OAC_Converted_Transformed_Range_Input <- OAC_Converted_Transformed_Range_Raw_Input
 }
 
 OAC_Converted_Transformed_Range_Input <- data.frame(OAC_Converted_Transformed_Range_Input, row.names=1)
-OAC_Converted_Transformed_Range_Raw_Input_Best_Clusters <- OAC_Converted_Transformed_Range_Raw_Input_Clusters[grep("Cluster",names(OAC_Converted_Transformed_Range_Raw_Input_Clusters),)]
+OAC_Converted_Transformed_Range_Raw_Input_Best_Clusters <- OAC_Converted_Transformed_Range_Raw_Input_Clusters[grep("Cluster",names(OAC_Converted_Transformed_Range_Raw_Input_Clusters))]
 
 Best_Cluster_Input <-OAC_Converted_Transformed_Range_Raw_Input_Best_Clusters[1,1]
 
@@ -369,11 +396,11 @@ OAC_Converted_Transformed_Range_Cluster_Metadata<-OAC_Converted_Transformed_Rang
 
 OAC_Converted_Transformed_Range_CSV_Output<-cbind(OA, OAC_Converted_Transformed_Range)
 
-dir.create("Cluster Data", showWarnings = FALSE)
+dir.create("lbbddata/Cluster Data", showWarnings = FALSE)
 
-write.table(OAC_Converted_Transformed_Range_CSV_Output, paste("Cluster Data/OAC_Converted_Transformed_Range_", i, "_KMeans_Runs.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+write.table(OAC_Converted_Transformed_Range_CSV_Output, paste("lbbddata/Cluster Data/OAC_Converted_Transformed_Range_", i, "_KMeans_Runs.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
 
-write.table(OAC_Converted_Transformed_Range_Cluster_Metadata, paste("Cluster Data/OAC_Converted_Transformed_Range_Cluster_Metadata_", i, "_Runs.csv", sep = ""), sep = ",", row.names=FALSE, col.names = TRUE, qmethod = "double")
+write.table(OAC_Converted_Transformed_Range_Cluster_Metadata, paste("lbbddata/Cluster Data/OAC_Converted_Transformed_Range_Cluster_Metadata_", i, "_Runs.csv", sep = ""), sep = ",", row.names=FALSE, col.names = TRUE, qmethod = "double")
 
 ClusterEnd <- Sys.time()
 
