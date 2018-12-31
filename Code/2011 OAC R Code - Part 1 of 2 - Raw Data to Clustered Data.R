@@ -20,8 +20,8 @@ library(data.table)
 setwd("C:\\R_projects\\OAC")
 
 #Data inputs
-OAC_Input_Lookup <- read.csv("file:///C:/R_projects/OAC/downloaded data/2011 OAC 60 Variables/2011_OAC_Raw_kVariables_Lookup.csv",sep=",")
-OAC_Input <- read.csv("file:///C:/R_projects/OAC/downloaded data/2011 OAC 60 Variables/2011_OAC_Raw_kVariables.csv",sep=",")
+OAC_Input_Lookup <- read.csv("file:///C:/R_projects/OAC/downloaded data/2011 OAC 60 Variables/2011_OAC_Raw_kVariables_Lookup.csv",sep=",", stringsAsFactors = F)
+OAC_Input <- read.csv("file:///C:/R_projects/OAC/downloaded data/2011 OAC 60 Variables/2011_OAC_Raw_kVariables.csv",sep=",", stringsAsFactors = F)
 
 ## code to select area to do analysis on - regional ? just LBBD? EastLondon?
 library(dplyr)
@@ -66,7 +66,7 @@ CN <- 8
 
 ### however each version has produced same clusters!!!  
 
-KM <- 100
+KM <- 1000
 
 ####################################################################################################
 # Calculate Percentages ############################################################################
