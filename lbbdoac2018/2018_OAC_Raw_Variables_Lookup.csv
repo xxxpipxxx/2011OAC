@@ -25,7 +25,7 @@ RM2018_12,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Asian/
 RM2018_13,Ethnic Group,Count,Person,Ethnicity,Demographic,"Persons who are Asian/Asian British: Chinese , Black Other and Other",% Persons who are Asian/Asian British: Chinese and Other
 RM2018_14,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Black African,% Persons who are Black/African/Caribbean/Black British
 RM2018_15,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Black Caribbean,% Persons who are Arab or from other ethnic groups
-RM2018_17,Proficiency in English,Count,Person_5_16_school_Census,Proficiency_in_English,Demographic,Language other than English spoken at home based on annual school census,% Persons whose main language is not English and they cannot speak English well or at all
+RM2018_17,Proficiency in English,Count,Person_school_Census,Proficiency_in_English,Demographic,Language other than English spoken at home based on annual school census,% Persons whose main language is not English and they cannot speak English well or at all
 RM2018_18,Household Composition,Count,Household,Household_Type,Household_Composition,Households with no children under 16,% Households with no children
 RM2018_21,Household Composition,Count,Household,Household_Type,Household_Composition,cohabiting adult households no under 16's,% Households with cohabiting adult households no under 16's
 RM2018_22,Household Composition,Count,Household,Household_Type,Household_Composition,Family households with dependent children,% Households with Family households with dependent children

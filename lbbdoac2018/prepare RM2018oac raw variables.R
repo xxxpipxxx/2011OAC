@@ -5,6 +5,10 @@ library(data.table)
 
 rm(list = ls())
 
+setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+
+
+
 rm2018person <- fread("file:///C:/R_projects/archetypes/27122018/RM2018CCPerson.csv")
 rm2018person <- rm2018person[rm2018person$oa != ""]
 rm2018person <- rm2018person %>% rename(OA11CD = oa)
@@ -61,10 +65,9 @@ Total_Population_16_and_over <- rm2018person %>%
 Total_Population_16_to_74 <- rm2018person %>% 
   filter(age20180331 >= 16 & age20180331 <= 74) %>% 
   group_by(OA11CD) %>%
-  summarise(Total_Population_16_and_over = n()) %>% 
-  complete(OA11CD, fill = list(Total_Population_16_and_over = 0)) %>% 
-  select(Total_Population_16_and_over)
-
+  summarise(Total_Population_16_to_74 = n()) %>% 
+  complete(OA11CD, fill = list(Total_Population_16_to_74 = 0)) %>% 
+  select(Total_Population_16_to_74)
 
 Total_Population_3_and_over <- rm2018person %>% 
   filter( age20180331 >= 3) %>% 
@@ -87,10 +90,10 @@ Total_Households_census <- census_OAC_Input %>%
   select(Total_Households_census=Total_Households)
 
 Total_Population_16_and_over_census <- census_OAC_Input %>%
-  select(Total_Population_16_and_over)
+  select(Total_Population_16_and_over_census = Total_Population_16_and_over)
 
 Total_Population_16_to_74_census <- census_OAC_Input %>%
-  select(Total_Population_16_and_over_census=Total_Population_16_to_74)
+  select(Total_Population_16_to_74_census = Total_Population_16_to_74)
 
 Total_Population_3_and_over_census <- census_OAC_Input %>%
   select(Total_Population_3_and_over_census=Total_Population_3_and_over)
@@ -149,12 +152,16 @@ RM2018_08 <- rm2018person %>% #
   complete(OA11CD, fill = list(RM2018_08 = 0)) %>% 
   select(RM2018_08)
 
+sum(RM2018_08)
+
 RM2018_09 <- rm2018person %>% # 
   filter(ethnicgroup2018 == "White: Other") %>%
   group_by(OA11CD) %>%
   summarise(RM2018_09 = n())  %>% 
   complete(OA11CD, fill = list(RM2018_09 = 0)) %>% 
   select(RM2018_09)
+
+sum(RM2018_09)
 
 RM2018_10 <- rm2018person %>% # 
   filter(ethnicgroup2018 == "Asian: Indian") %>%
@@ -378,6 +385,14 @@ rm(Total_Population, Total_Households, Total_Population_16_and_over, Total_Popul
    RM2018_34, RM2018_35, RM2018_36,
    RM2018_40, RM2018_41, RM2018_42, RM2018_43)
 
+rm(rm2018HH)
+rm(rm2018person)
+rm(OAC_Input)
+
+## write chosen counts
+
+fwrite(RM2018_OAC_input, "2018_OAC_Raw_Variables.csv")
+
 
 #############################
 ### prepare for clustering ##
@@ -476,8 +491,8 @@ RM2018_OAC_Input_PCT_RATIO <- replace(RM2018_OAC_Input_PCT_RATIO, is.na(RM2018_O
 
 if(RQOUTPUT=="YES")
 {
-  dir.create("lbbddata/Pre-Cluster Data", showWarnings = FALSE)
-  write.table(RM2018_OAC_Input_PCT_RATIO, paste("lbbddata/Pre-Cluster Data/01_RM2018_OAC_Percentages.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+  dir.create("Pre-Cluster Data", showWarnings = FALSE)
+  write.table(RM2018_OAC_Input_PCT_RATIO, paste("Pre-Cluster Data/01_RM2018_OAC_Percentages.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
 }
 
 ####################################################################################################
@@ -490,8 +505,8 @@ if(RQTRANSFORMATION =="IHS")
   
   if(RQOUTPUT=="YES")
   {
-    dir.create("lbbddata/Pre-Cluster Data", showWarnings = FALSE)
-    write.table(RM2018_OAC_Input_PCT_RATIO_IHS, paste("lbbddata/Pre-Cluster Data/02_RM2018_OAC_Percentages_IHS_Transformed.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+    dir.create("Pre-Cluster Data", showWarnings = FALSE)
+    write.table(RM2018_OAC_Input_PCT_RATIO_IHS, paste("Pre-Cluster Data/02_RM2018_OAC_Percentages_IHS_Transformed.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
   }
   
 }
@@ -582,13 +597,13 @@ if(RQTRANSFORMATION =="BOXCOX")
   RM2018_OAC_PCT_RATIO_BC_Lambda<-data.frame(RM2018_OAC_PCT_RATIO_BC_Lambda)
   RM2018_OAC_PCT_RATIO_BC_Lambda[,1]<- data.frame(K_Var[,2])
   colnames(RM2018_OAC_PCT_RATIO_BC_Lambda)<-c("Variable", "Lambda Value")
-  dir.create("lbbddata/Transformation Data", showWarnings = FALSE)
-  write.table(RM2018_OAC_PCT_RATIO_BC_Lambda, paste("lbbddata/Transformation Data/Percentages Box-Cox Lambda Values.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+  dir.create("Transformation Data", showWarnings = FALSE)
+  write.table(RM2018_OAC_PCT_RATIO_BC_Lambda, paste("lbbdoac/lbbdoac2018/Transformation Data/Percentages Box-Cox Lambda Values.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
   
   if(RQOUTPUT=="YES")
   {
-    dir.create("lbbddata/Pre-Cluster Data", showWarnings = FALSE)
-    write.table(RM2018_OAC_PCT_RATIO_BC, paste("lbbddata/Pre-Cluster Data/02_RM2018_OAC_Percentages_Box_Cox_Transformed.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+    dir.create("lbbdoac/lbbdoac2018/Pre-Cluster Data", showWarnings = FALSE)
+    write.table(RM2018_OAC_PCT_RATIO_BC, paste("Pre-Cluster Data/02_RM2018_OAC_Percentages_Box_Cox_Transformed.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
   }
   
 }
@@ -613,8 +628,8 @@ colnames(RM2018_OAC_Converted_Transformed_Range)[1]<-"OA"
 
 if(RQOUTPUT=="YES")
 {
-  dir.create("lbbddata/Pre-Cluster Data", showWarnings = FALSE)
-  write.table(RM2018_OAC_Converted_Transformed_Range, paste("lbbddata/Pre-Cluster Data/03_RM2018_OAC_Percentages_Transformed_Range.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+  dir.create("Pre-Cluster Data", showWarnings = FALSE)
+  write.table(RM2018_OAC_Converted_Transformed_Range, paste("Pre-Cluster Data/03_RM2018_OAC_Percentages_Transformed_Range.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
 }
 
 
@@ -753,11 +768,11 @@ RM2018_OAC_Converted_Transformed_Range_Cluster_Metadata<-RM2018_OAC_Converted_Tr
 
 RM2018_OAC_Converted_Transformed_Range_CSV_Output<-cbind(OA, RM2018_OAC_Converted_Transformed_Range)
 
-dir.create("lbbddata/Cluster Data", showWarnings = FALSE)
+dir.create("Cluster Data", showWarnings = T)
 
-write.table(RM2018_OAC_Converted_Transformed_Range_CSV_Output, paste("lbbddata/Cluster Data/RM2018_OAC_Converted_Transformed_Range_", i, "_KMeans_Runs.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+write.table(RM2018_OAC_Converted_Transformed_Range_CSV_Output, paste("Cluster Data/RM2018_OAC_Converted_Transformed_Range_", i, "_KMeans_Runs.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
 
-write.table(RM2018_OAC_Converted_Transformed_Range_Cluster_Metadata, paste("lbbddata/Cluster Data/RM2018_OAC_Converted_Transformed_Range_Cluster_Metadata_", i, "_Runs.csv", sep = ""), sep = ",", row.names=FALSE, col.names = TRUE, qmethod = "double")
+write.table(RM2018_OAC_Converted_Transformed_Range_Cluster_Metadata, paste("Cluster Data/RM2018_OAC_Converted_Transformed_Range_Cluster_Metadata_", i, "_Runs.csv", sep = ""), sep = ",", row.names=FALSE, col.names = TRUE, qmethod = "double")
 
 ClusterEnd <- Sys.time()
 
