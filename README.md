@@ -1,3 +1,8 @@
+## forkrd repository
+
+have added code to be specific to one local area and altered variables to take into consideration 2018 variables
+
+
 ## 2011 Area Classification for Output Areas (the 2011 Output Area Classification or 2011 OAC)
 The 2011 OAC has been created through collaboration between the Office for National Statistics (ONS) and University College London (UCL). The 2011 OAC is a three-tiered hierarchical geodemographic classification of the UK built using only 2011 UK Census data at the Output Area / Small Area level. It consists of 8 Supergroups, 26 Groups and 76 Subgroups. 
 
