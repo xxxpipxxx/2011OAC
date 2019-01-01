@@ -13,14 +13,14 @@ RM2018_5,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 65 t
 RM2018_6,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 90 and over,% Persons aged 90 and over
 Census_7,Usual Resident Population,Count,Person,Population_Structure,Demographic,Persons living in a communal establishment,% Persons living in a communal establishment
 RM2018_8,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are white British/Irish,% Persons who are white
-RM2018_9,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who have other Ethnic Groups,% Persons who have mixed ethnicity or are from multiple ethnic groups
+RM2018_9,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are White: Other,% Persons who have mixed ethnicity or are from multiple ethnic groups
 RM2018_10,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Asian/Asian British: Indian,% Persons who are Asian/Asian British: Indian
 RM2018_11,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Asian/Asian British: Pakistani,% Persons who are Asian/Asian British: Pakistani
 RM2018_12,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Asian/Asian British: Bangladeshi,% Persons who are Asian/Asian British: Bangladeshi
 RM2018_13,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Asian/Asian British: Chinese and Other,% Persons who are Asian/Asian British: Chinese and Other
 RM2018_14,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Black African,% Persons who are Black/African/Caribbean/Black British
 RM2018_15,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Black Caribbean,% Persons who are Arab or from other ethnic groups
-RM2018_17,Proficiency in English,Count,persons on school census,Proficiency_in_English,Demographic,Language other than English spoken at home based on annual school census,% Persons whose main language is not English and they cannot speak English well or at all
+RM2018_17,Proficiency in English,Count,Person_5_16_school_Census,Proficiency_in_English,Demographic,Language other than English spoken at home based on annual school census,% Persons whose main language is not English and they cannot speak English well or at all
 RM2018_18,Household Composition,Count,Household,Household_Type,Household_Composition,Households with no children under 16,% Households with no children
 RM2018_19,Household Composition,Count,Household,Household_Type,Household_Composition,Households with non-dependant children,% Households with non-dependant children
 RM2018_21,Household Composition,Count,Household,Household_Type,Household_Composition,cohabiting adult households no under 16's,% Households with cohabiting adult households no under 16's
@@ -39,10 +39,10 @@ Census_33,Health and Provision of Unpaid Care,Count,Person,Population Health and
 Census_34,Qualifications and Students,Count,Person_16_Over,Population Education,Socio-Economic,"Persons aged over 16 whose highest level of qualification is Level 1, Level 2 or Apprenticeship","% Persons aged over 16 whose highest level of qualification is Level 1, Level 2 or Apprenticeship"
 Census_35,Qualifications and Students,Count,Person_16_Over,Population Education,Socio-Economic,Persons aged over 16 whose highest level of qualification is Level 3 qualifications,% Persons aged over 16 whose highest level of qualification is Level 3 qualifications
 Census_36,Qualifications and Students,Count,Person_16_Over,Population Education,Socio-Economic,Persons aged over 16 whose highest level of qualification is Level 4 qualifications and above,% Persons aged over 16 whose highest level of qualification is Level 4 qualifications and above
-Census_37,Method of Travel to Work,Count,Persons_16_to_74,Travel-to-Work,Socio-Economic,Persons aged between 16 and 74 who use public transport to get to work,% Persons aged between 16 and 74 who use public transport to get to work
-Census_38,Method of Travel to Work,Count,Persons_16_to_74,Travel-to-Work,Socio-Economic,Persons aged between 16 and 74 who use private transport to get to work,% Persons aged between 16 and 74 who use private transport to get to work
-Census_39,Method of Travel to Work,Count,Persons_16_to_74,Travel-to-Work,Socio-Economic,"Persons aged between 16 and 74 who walk, cycle or use an alternative method to get to work","% Persons aged between 16 and 74 who walk, cycle or use an alternative method to get to work"
+Census_37,Method of Travel to Work,Count,Person_16_to_74,Travel-to-Work,Socio-Economic,Persons aged between 16 and 74 who use public transport to get to work,% Persons aged between 16 and 74 who use public transport to get to work
+Census_38,Method of Travel to Work,Count,Person_16_to_74,Travel-to-Work,Socio-Economic,Persons aged between 16 and 74 who use private transport to get to work,% Persons aged between 16 and 74 who use private transport to get to work
+Census_39,Method of Travel to Work,Count,Person_16_to_74,Travel-to-Work,Socio-Economic,"Persons aged between 16 and 74 who walk, cycle or use an alternative method to get to work","% Persons aged between 16 and 74 who walk, cycle or use an alternative method to get to work"
 RM2018_40,Benefits Received,Count,Household,Benefits,Socio-Economic,Households Receiving Housing Benefit,% Households Receiving Housing Benefit
 RM2018_41,Benefits Received,Count,Household,Benefits,Socio-Economic,Households Reciving Council Tax Relief,% Households Reciving Council Tax Relief
 RM2018_42,Benefits Received,Count,Household,Benefits,Socio-Economic,Housholds Receiving Council Tax and Housing Benefit,% Housholds Receiving Council Tax and Housing Benefit
-RM2018_43,Free school Meals,Count,persons on school census,Deprivation,Socio-Economic,Persons on school Census eligible for free school meals,% PLASC pupils eleigible for frr school meals
+RM2018_43,Free school Meals,Count,Person_5_16_school_Census,Deprivation,Socio-Economic,Persons on school Census eligible for free school meals,% PLASC pupils eleigible for frr school meals

@@ -86,6 +86,8 @@ colnames(OAC_Input_PCT_RATIO) <- "OA"
 
 # Calculate loop
 
+n <- 1
+
 for (n in 1:nrow(K_Var)){
   
   if (!is.na(K_Var[n,3])) {
