@@ -53,17 +53,57 @@ table(rm2018person$BenRecieved)
 
 ## get variable lookup table
 
-RM2018IndividualInput_Lookup <- read.csv("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/2018_Individual_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
+RM2018IndividualInput_Lookup <- read.csv("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/2018_POSTCODE_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
 
 
 ## create Raw Variables
+
+Total_Population <- rm2018person %>% 
+  group_by(ID_Master) %>% 
+  summarise(Total_Population = n()) %>% 
+  complete(ID_Master, fill = list(Total_Population = 0))
+
+Total_Households <- rm2018person %>% 
+  group_by(ID_Master) %>% 
+  summarise(Total_Households = n()) %>% 
+  complete(ID_Master, fill = list(count = 0)) %>%
+  select(Total_Households)
+
+Total_Population_16_and_over <- rm2018person %>% 
+  filter(age20180331 >= 16) %>% 
+  group_by(ID_Master) %>%
+  summarise(Total_Population_16_and_over = n()) %>% 
+  complete(ID_Master, fill = list(Total_Population_16_and_over = 0)) %>% 
+  select(Total_Population_16_and_over)
+
+Total_Population_16_to_74 <- rm2018person %>% 
+  filter(age20180331 >= 16 & age20180331 <= 74) %>% 
+  group_by(ID_Master) %>%
+  summarise(Total_Population_16_to_74 = n()) %>% 
+  complete(ID_Master, fill = list(Total_Population_16_to_74 = 0)) %>% 
+  select(Total_Population_16_to_74)
+
+Total_Population_3_and_over <- rm2018person %>% 
+  filter( age20180331 >= 3) %>% 
+  group_by(ID_Master) %>%
+  summarise(Total_Population_3_and_over = n()) %>% 
+  complete(ID_Master, fill = list(Total_Population_3_and_over = 0)) %>% 
+  select(Total_Population_3_and_over)
+
+Total_Population_school_census  <- rm2018person %>% 
+  filter(id_sch != "") %>% # include only records where we have a UPN
+  group_by(ID_Master) %>%
+  summarise(Total_Population_school_census = n()) %>% 
+  complete(ID_Master, fill = list(Total_Population_school_census = 0)) %>% 
+  select(Total_Population_school_census)
 
 
 RM2018_01 <- rm2018person %>% # Persons aged 0 to 4
   filter(age20180331 <= 4) %>%
   group_by(ID_Master) %>%
   summarise(RM2018_01 = n()) %>% 
-  complete(ID_Master, fill = list(RM2018_01 = 0))
+  complete(ID_Master, fill = list(RM2018_01 = 0)) %>% 
+  select(RM2018_01)
   
 RM2018_02 <- rm2018person %>% # Persons aged 5 to 14
   filter(age20180331 >= 5 & age20180331 <= 14) %>%
@@ -284,19 +324,23 @@ RM2018_43 <- rm2018person %>% # persons on school census recieving fsm
 
 ## create dataframe with input raw variable counts
 
-RM2018_Individual_input <- data.frame(RM2018_01, RM2018_02, RM2018_03, RM2018_04, RM2018_05, RM2018_06,
-                               RM2018_08, RM2018_09, RM2018_10, RM2018_11, RM2018_12, RM2018_13, RM2018_14, RM2018_15,
-                               RM2018_17, RM2018_18,
-                               RM2018_21, RM2018_22, RM2018_23, RM2018_24, RM2018_25, RM2018_26, RM2018_27,
-                               RM2018_28, RM2018_29, RM2018_30, RM2018_31,
-                               RM2018_40, RM2018_41, RM2018_42, RM2018_43)
+RM2018_Individual_input <- data.frame(Total_Population, Total_Households, Total_Population_16_and_over, Total_Population_16_to_74,
+                                      Total_Population_3_and_over, Total_Population_school_census,
+                                      RM2018_01, RM2018_02, RM2018_03, RM2018_04, RM2018_05, RM2018_06,
+                                      RM2018_08, RM2018_09, RM2018_10, RM2018_11, RM2018_12, RM2018_13, RM2018_14, RM2018_15,
+                                      RM2018_17, RM2018_18,
+                                      RM2018_21, RM2018_22, RM2018_23, RM2018_24, RM2018_25, RM2018_26, RM2018_27,
+                                      RM2018_28, RM2018_29, RM2018_30, RM2018_31,
+                                      RM2018_40, RM2018_41, RM2018_42, RM2018_43)
 
 length(RM2018_Individual_input)-1 == nrow(RM2018IndividualInput_Lookup) ### check we have matching vars in both tables
 
 
 # remove uneeded objects
 
-rm(RM2018_01, RM2018_02, RM2018_03, RM2018_04, RM2018_05, RM2018_06,
+rm(Total_Population, Total_Households, Total_Population_16_and_over, Total_Population_16_to_74,
+   Total_Population_3_and_over, Total_Population_school_census,
+   RM2018_01, RM2018_02, RM2018_03, RM2018_04, RM2018_05, RM2018_06,
    RM2018_08, RM2018_09, RM2018_10, RM2018_11, RM2018_12, RM2018_13, RM2018_14, RM2018_15,
    RM2018_17, RM2018_18,
    RM2018_21, RM2018_22, RM2018_23, RM2018_24, RM2018_25, RM2018_26, RM2018_27,
@@ -309,7 +353,9 @@ rm(rm2018person)
 ## write chosen counts
 
 
-fwrite(RM2018_Individual_input, "2018_Individual_Raw_Variables.csv")
+fwrite(RM2018_Individual_input, "2018_Individual_Raw_Variables_addedcluster.csv")
+
+
 
 
 
