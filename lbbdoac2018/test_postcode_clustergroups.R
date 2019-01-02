@@ -11,22 +11,22 @@ setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
 
 ## get pre cluster percents and counts
 
-preclusterV1PER  <- fread("Pre-Cluster Data/01_RM2018_OAC_Percentages.csv")
-preclusterV1COUNT <- fread("2018_OAC_Raw_Variables.csv")
+preclusterV1PER <- fread("Pre-Cluster Data/01_RM2018_Postcode_Percentages.csv")
+preclusterV1COUNT <- fread("2018_Postcode_Raw_Variables.csv")
 
 
 ## get transformed and standardised data 
 
-clusterV1  <- fread("Cluster Data/RM2018_OAC_Converted_Transformed_Range_1000_KMeans_Runs.csv")
-clusterV1summary <- fread("Cluster Data/RM2018_OAC_Converted_Transformed_Range_Cluster_Metadata_1000_Runs.csv")
+clusterV1  <- fread("Cluster Data/RM2018_Postcode_Converted_Transformed_Range_1000_KMeans_Runs.csv")
+clusterV1summary <- fread("Cluster Data/RM2018_Postcode_Converted_Transformed_Range_Cluster_Metadata_1000_Runs.csv")
 
 ## get variable lookup table
 
-RM2018OAC_Input_Lookup <- read.csv("2018_OAC_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
+RM2018OAC_Input_Lookup <- read.csv("2018_Postcode_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
 
 
 compare_clusters <- preclusterV1COUNT %>% 
-  left_join(clusterV1 %>% select(OA11CD = OA, Cluster))
+  left_join(clusterV1 %>% select(POSTCODE = OA, Cluster))
 
 compare_clusters <- compare_clusters[-1] %>% 
   group_by(Cluster) %>% 
@@ -107,17 +107,14 @@ RM2018_OAC_Input_PCT_RATIO <- replace(RM2018_OAC_Input_PCT_RATIO, is.na(RM2018_O
 if(RQOUTPUT=="YES")
 {
   dir.create("Clustergroups", showWarnings = FALSE)
-  write.table(RM2018_OAC_Input_PCT_RATIO, paste("Clustergroups/01_RM2018_OACclusters_Percentages.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+  write.table(RM2018_OAC_Input_PCT_RATIO, paste("Clustergroups/01_RM2018_Postcodeclusters_Percentages.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
 }
 
-cluster_groups <- fread("Clustergroups/01_RM2018_OACclusters_Percentages.csv")
+cluster_groups <- fread("Clustergroups/01_RM2018_Postcodeclusters_Percentages.csv")
 
 
 barplot(cluster_groups$RM2018_06[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 90 plus
 abline(h = cluster_groups$RM2018_06[9], col = "red" , lwd=4)
-
-barplot(cluster_groups$RM2018_07[1:8], names.arg= c(1:8), col = "blue" )#  Persons living in communal establishment
-abline(h = cluster_groups$RM2018_07[9], col = "red" , lwd=4)
 
 barplot(cluster_groups$RM2018_08[1:8], names.arg= c(1:8), col = "blue" )#  White British
 abline(h = cluster_groups$RM2018_08[9], col = "red" , lwd=4)
@@ -181,21 +178,6 @@ abline(h = cluster_groups$RM2018_30[9], col = "red" , lwd=4)
 
 barplot(cluster_groups$RM2018_31[1:8], names.arg=  c(1:8), col = "blue" ) # Households who are Reside Renting 
 abline(h = cluster_groups$RM2018_31[9], col = "red" , lwd=4)
-
-barplot(cluster_groups$RM2018_32[1:8], names.arg=  c(1:8), col = "blue" ) # Individuals day-to-day activities limited a lot or a little (Standardised Illness Ratio)
-abline(h = cluster_groups$RM2018_32[9], col = "red" , lwd=4)
-
-barplot(cluster_groups$RM2018_33[1:8], names.arg=  c(1:8), col = "blue" ) # Persons providing unpaid care
-abline(h = cluster_groups$RM2018_33[9], col = "red" , lwd=4)
-
-barplot(cluster_groups$RM2018_34[1:8], names.arg=  c(1:8), col = "blue" ) # Persons aged over 16 whose highest level of qualification is Level 1, Level 2 or Apprenticeship
-abline(h = cluster_groups$RM2018_34[9], col = "red" , lwd=4)
-
-barplot(cluster_groups$RM2018_35[1:8], names.arg=  c(1:8), col = "blue" ) # Persons aged over 16 whose highest level of qualification is Level 3 qualifications
-abline(h = cluster_groups$RM2018_35[9], col = "red" , lwd=4)
-
-barplot(cluster_groups$RM2018_36[1:8], names.arg=  c(1:8), col = "blue" ) # Persons aged over 16 whose highest level of qualification is Level 4 qualifications and above
-abline(h = cluster_groups$RM2018_36[9], col = "red" , lwd=4)
 
 barplot(cluster_groups$RM2018_40[1:8], names.arg=  c(1:8), col = "blue" ) # Households Receiving Housing Benefit
 abline(h = cluster_groups$RM2018_40[9], col = "red" , lwd=4)

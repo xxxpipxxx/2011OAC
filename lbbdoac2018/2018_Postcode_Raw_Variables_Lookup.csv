@@ -1,0 +1,38 @@
+VariableCode,VariableTable,VariableMeasurementUnit,VariableStatisticalUnit,VariableSubDomain,VariableDomain,VariableName,VariableClustered
+Total_Population,Usual Resident Population,Count,Person,Totals,Totals,Total Population,Total Population
+Total_Households,Household Composition,Count,Household,Totals,Totals,Total Number of Households,Total Number of Households
+Total_Population_16_and_over,Age Structure,Count,Person_16_Over,Totals,Totals,Total Population aged 16 and over,Total Population aged 16 and over
+Total_Population_16_to_74,Age Structure,Count,Person_16_to_74,Totals,Totals,Total Population aged 16 to 74,Total Population aged 16 to 74
+Total_Population_3_and_over,Age Structure,Count,Person_3_Over,Totals,Totals,Total Population aged 3 and over,Total Population aged 3 and over
+Total_Population_school_census,Age Structure,Count,Person_school_Census,Totals,Totals,Total population on school census,Total population on school census 
+RM2018_01,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 0 to 4,% Persons aged 0 to 4
+RM2018_02,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 5 to 14,% Persons aged 5 to 14
+RM2018_03,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 25 to 44,% Persons aged 25 to 44
+RM2018_04,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 45 to 64,% Persons aged 45 to 64
+RM2018_05,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 65 to 89,% Persons aged 65 to 89
+RM2018_06,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 90 and over,% Persons aged 90 and over
+RM2018_08,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are white British/Irish,% Persons who are white
+RM2018_09,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are White: Other,% Persons who have mixed ethnicity or are from multiple ethnic groups
+RM2018_10,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Asian/Asian British: Indian,% Persons who are Asian/Asian British: Indian
+RM2018_11,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Asian/Asian British: Pakistani,% Persons who are Asian/Asian British: Pakistani
+RM2018_12,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Asian/Asian British: Bangladeshi,% Persons who are Asian/Asian British: Bangladeshi
+RM2018_13,Ethnic Group,Count,Person,Ethnicity,Demographic,"Persons who are Asian/Asian British: Chinese , Black Other and Other",% Persons who are Asian/Asian British: Chinese and Other
+RM2018_14,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Black African,% Persons who are Black/African/Caribbean/Black British
+RM2018_15,Ethnic Group,Count,Person,Ethnicity,Demographic,Persons who are Black Caribbean,% Persons who are Arab or from other ethnic groups
+RM2018_17,Proficiency in English,Count,Person_school_Census,Proficiency_in_English,Demographic,Language other than English spoken at home based on annual school census,% Persons whose main language is not English and they cannot speak English well or at all
+RM2018_18,Household Composition,Count,Household,Household_Type,Household_Composition,Households with no children under 16,% Households with no children
+RM2018_21,Household Composition,Count,Household,Household_Type,Household_Composition,cohabiting adult households no under 16's,% Households with cohabiting adult households no under 16's
+RM2018_22,Household Composition,Count,Household,Household_Type,Household_Composition,Family households with dependent children,% Households with Family households with dependent children
+RM2018_23,Household Composition,Count,Household,Household_Type,Household_Composition,older cohabiting households,% Households with older cohabiting households
+RM2018_24,Household Composition,Count,Household,Household_Type,Household_Composition,older person living alone,% Households with older person living alone
+RM2018_25,Household Composition,Count,Household,Household_Type,Household_Composition,single adult households,% Households with single adult households
+RM2018_26,Household Composition,Count,Household,Household_Type,Household_Composition,single adult households with dependant children,% Households with single adult households with dependant children
+RM2018_27,Household Composition,Count,Household,Household_Type,Household_Composition,three generational households,% Households with three generational households
+RM2018_28,Tenure,Count,Household,Housing_Ownership,Housing,Households who own or have shared ownership of property,% Households who own or have shared ownership of property
+RM2018_29,Tenure,Count,Household,Housing_Ownership,Housing,Households who are social renting,% Households who are social renting
+RM2018_30,Tenure,Count,Household,Housing_Ownership,Housing,Households who are private renting,% Households who are private renting
+RM2018_31,Tenure,Count,Household,Housing_Ownership,Housing,Households who are in a Reside home,% Households who are private renting
+RM2018_40,Benefits Received,Count,Household,Benefits,Socio-Economic,Households Receiving Housing Benefit,% Households Receiving Housing Benefit
+RM2018_41,Benefits Received,Count,Household,Benefits,Socio-Economic,Households Reciving Council Tax Relief,% Households Reciving Council Tax Relief
+RM2018_42,Benefits Received,Count,Household,Benefits,Socio-Economic,Housholds Receiving Council Tax and Housing Benefit,% Housholds Receiving Council Tax and Housing Benefit
+RM2018_43,Free school Meals,Count,Person_school_Census,Deprivation,Socio-Economic,Persons on school Census eligible for free school meals,% PLASC pupils eleigible for frr school meals
