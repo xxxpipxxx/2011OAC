@@ -14,7 +14,7 @@ RM2018individual_raw_input <- read.csv("file:///C:/R_projects/OAC/lbbdoac/lbbdoa
 
 
 
-df1 <- RM2018individual_raw_input
+df1 <- RM2018individual_raw_input[-1]
 
 #df1 <- sample_n(RM2018individual_raw_input, size =10000)
 
