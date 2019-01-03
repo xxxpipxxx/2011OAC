@@ -7,6 +7,7 @@ Total_Population_3_and_over,Age Structure,Count,Person_3_Over,Totals,Totals,Tota
 Total_Population_school_census,Age Structure,Count,Person_school_Census,Totals,Totals,Total population on school census,Total population on school census 
 RM2018_01,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 0 to 4,% Persons aged 0 to 4
 RM2018_02,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 5 to 14,% Persons aged 5 to 14
+RM2018_02a,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 15 to 24,% Persons aged 15 to 24
 RM2018_03,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 25 to 44,% Persons aged 25 to 44
 RM2018_04,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 45 to 64,% Persons aged 45 to 64
 RM2018_05,Age Structure,Count,Person,Population_Age,Demographic,Persons aged 65 to 89,% Persons aged 65 to 89

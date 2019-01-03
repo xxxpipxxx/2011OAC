@@ -137,7 +137,7 @@ if(RQTRANSFORMATION =="IHS")
   if(RQOUTPUT=="YES")
   {
     dir.create("Pre-Cluster Data", showWarnings = FALSE)
-    write.table(RM2018_OAC_Input_PCT_RATIO_IHS, paste("Pre-Cluster Data/02_RM2018_OAC_Percentages_IHS_Transformed.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+    write.table(RM2018_OAC_Input_PCT_RATIO_IHS, paste("Pre-Cluster Data/02_RM2018_Postcode_Percentages_IHS_Transformed.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
   }
   
 }
