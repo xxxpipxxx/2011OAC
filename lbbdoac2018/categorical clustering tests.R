@@ -5,7 +5,7 @@ library(data.table)
 library(clustMixType) ## for plots
 library(klaR) # for k modes
 
-rm(list = ls())
+rm(list = ls()) 
 
 setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
 
