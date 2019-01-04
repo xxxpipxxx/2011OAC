@@ -5,15 +5,20 @@ library(data.table)
 
 rm(list = ls())
 
-setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+#setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+setwd("C:\\Users\\pcanham\\OneDrive - London Borough of Barking and Dagenham\\My documents\\RM2018OAC\\lbbdoac2018")
 
 
+#rm2018person <- fread("file:///C:/R_projects/archetypes/27122018/RM2018CCPerson.csv")
+rm2018person <- fread("file:///C:/Users/pcanham/OneDrive - London Borough of Barking and Dagenham/Desktop/27122018/RM2018CCPerson.csv")
 
-rm2018person <- fread("file:///C:/R_projects/archetypes/27122018/RM2018CCPerson.csv")
+
 rm2018person <- rm2018person[rm2018person$oa != ""]
 rm2018person <- rm2018person %>% dplyr:: rename(OA11CD = oa)
 
-rm2018HH <- fread("file:///C:/R_projects/archetypes/27122018/RM2018CCHousehold.csv")
+#rm2018HH <- fread("file:///C:/R_projects/archetypes/27122018/RM2018CCHousehold.csv")
+rm2018HH <- fread("file:///C:/Users/pcanham/OneDrive - London Borough of Barking and Dagenham/Desktop/27122018/RM2018CCHousehold.csv")
+
 rm2018HH <- rm2018HH[rm2018HH$OA11CD != ""]
 rm2018HH <- rm2018HH %>% 
   mutate(POSTCODE = toupper(gsub(" ", "", POSTCODE))) %>% 
@@ -54,7 +59,7 @@ table(rm2018person$POSTCODE)
 
 ## get variable lookup table
 
-RM2018Postcode_Input_Lookup <- read.csv("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/2018_Postcode_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
+RM2018Postcode_Input_Lookup <- read.csv("2018_Postcode_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
 
 
 ## create Raw Variables
@@ -112,6 +117,13 @@ RM2018_02 <- rm2018person %>% # Persons aged 5 to 14
   summarise(RM2018_02 = n())  %>% 
   complete(POSTCODE, fill = list(RM2018_02 = 0)) %>% 
   select(RM2018_02)
+
+RM2018_02a <- rm2018person %>% # Persons aged 25 to 44
+  filter(age20180331 >= 15 & age20180331 <= 24) %>%
+  group_by(POSTCODE) %>%
+  summarise(RM2018_02a = n())  %>% 
+  complete(POSTCODE, fill = list(RM2018_02a = 0)) %>% 
+  select(RM2018_02a)
 
 RM2018_03 <- rm2018person %>% # Persons aged 25 to 44
   filter(age20180331 >= 24 & age20180331 <= 44) %>%
@@ -327,14 +339,14 @@ RM2018_43 <- rm2018person %>% # persons on school census recieving fsm
 
 RM2018_Postcode_input <- data.frame(Total_Population, Total_Households, Total_Population_16_and_over, Total_Population_16_to_74,
                                Total_Population_3_and_over, Total_Population_school_census,
-                               RM2018_01, RM2018_02, RM2018_03, RM2018_04, RM2018_05, RM2018_06,
+                               RM2018_01, RM2018_02,RM2018_02a, RM2018_03, RM2018_04, RM2018_05, RM2018_06,
                                RM2018_08, RM2018_09, RM2018_10, RM2018_11, RM2018_12, RM2018_13, RM2018_14, RM2018_15,
                                RM2018_17, RM2018_18,
                                RM2018_21, RM2018_22, RM2018_23, RM2018_24, RM2018_25, RM2018_26, RM2018_27,
                                RM2018_28, RM2018_29, RM2018_30, RM2018_31,
                                RM2018_40, RM2018_41, RM2018_42, RM2018_43)
 
-length(RM2018_OAC_input)-1 == nrow(RM2018Postcode_Input_Lookup) ### check we have matching vars in both tables
+length(RM2018_Postcode_input)-1 == nrow(RM2018Postcode_Input_Lookup) ### check we have matching vars in both tables
 
 # remove postcodes where tptal pop is less than 20
 
@@ -345,7 +357,7 @@ RM2018_Postcode_input<- RM2018_Postcode_input %>%
 
 rm(Total_Population, Total_Households, Total_Population_16_and_over, Total_Population_16_to_74,
    Total_Population_3_and_over, Total_Population_school_census,
-   RM2018_01, RM2018_02, RM2018_03, RM2018_04, RM2018_05, RM2018_06,
+   RM2018_01, RM2018_02,RM2018_02a, RM2018_03, RM2018_04, RM2018_05, RM2018_06,
    RM2018_08, RM2018_09, RM2018_10, RM2018_11, RM2018_12, RM2018_13, RM2018_14, RM2018_15,
    RM2018_17, RM2018_18,
    RM2018_21, RM2018_22, RM2018_23, RM2018_24, RM2018_25, RM2018_26, RM2018_27,

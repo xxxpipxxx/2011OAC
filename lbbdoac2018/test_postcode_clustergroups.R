@@ -6,7 +6,8 @@ library(data.table)
 
 rm(list = ls())
 
-setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+#setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+setwd("C:\\Users\\pcanham\\OneDrive - London Borough of Barking and Dagenham\\My documents\\RM2018OAC\\lbbdoac2018")
 
 
 ## get pre cluster percents and counts
@@ -79,7 +80,7 @@ for (n in 1:nrow(K_Var)){
     #Uses grep to get the column id matching the current denominator
     denominator <- compare_clusters[,grep(paste("^",K_Var[n,3],"$",sep=""), colnames(compare_clusters))]
     
-    assign(paste(K_Var[n,2],"_PCT",sep=""),as.data.frame(numerator/denominator*100))# Calculate %
+    assign(paste(K_Var[n,2],"_PCT",sep=""),as.data.frame(numerator/denominator))# Calculate %
     assign(paste(K_Var[n,2],"_PCT",sep=""),setNames(get(paste(K_Var[n,2],"_PCT",sep="")),paste(K_Var[n,2],"_PCT",sep="")))#Change column name
     
     #Create output files
@@ -112,6 +113,38 @@ if(RQOUTPUT=="YES")
 
 cluster_groups <- fread("Clustergroups/01_RM2018_Postcodeclusters_Percentages.csv")
 
+
+## test for normality of some of the original perecntages data
+hist(preclusterV1PER$RM2018_01_PCT/100)
+boxplot(preclusterV1PER$RM2018_01_PCT/100)
+
+## test for normality of some of the transforemd and scaled percentages
+hist(clusterV1$RM2018_01)
+boxplot(clusterV1$RM2018_01)
+
+hist(preclusterV1PER$RM2018_03_PCT/100)
+boxplot(preclusterV1PER$RM2018_03_PCT/100)
+hist(clusterV1$RM2018_03)
+boxplot(clusterV1$RM2018_03)
+
+### visualise distributions
+barplot(cluster_groups$RM2018_01[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 0 to 4
+abline(h = cluster_groups$RM2018_01[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_02_PCT[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 15 to 24
+abline(h = cluster_groups$RM2018_02_PCT[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_02a_PCT[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 15 to 24
+abline(h = cluster_groups$RM2018_02a_PCT[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_03[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 25 to 44
+abline(h = cluster_groups$RM2018_03[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_04[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 45 to 64
+abline(h = cluster_groups$RM2018_04[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_05[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 65 to 89
+abline(h = cluster_groups$RM2018_05[9], col = "red" , lwd=4)
 
 barplot(cluster_groups$RM2018_06[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 90 plus
 abline(h = cluster_groups$RM2018_06[9], col = "red" , lwd=4)

@@ -7,7 +7,9 @@ library(car)
 library(gtools)
 
 rm(list = ls())
-setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+#setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+setwd("C:\\Users\\pcanham\\OneDrive - London Borough of Barking and Dagenham\\My documents\\RM2018OAC\\lbbdoac2018")
+
 
 ## get preprepared varisbles created from R script "prepare RM2018Postcode raw variabes.R
 
@@ -19,7 +21,7 @@ str(RM2018_OAC_input)
 
 ## get variable lookup table
 
-RM2018OAC_Input_Lookup <- read.csv("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/2018_Postcode_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
+RM2018OAC_Input_Lookup <- read.csv("2018_Postcode_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
 
 
 

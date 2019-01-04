@@ -107,6 +107,23 @@ if(RQOUTPUT=="YES")
 
 cluster_groups <- fread("Clustergroups/01_RM2018_Individual_clusters_Percentages.csv")
 
+barplot(cluster_groups$RM2018_01[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 0 to 4
+abline(h = cluster_groups$RM2018_01[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_02_PCT[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 15 to 24
+abline(h = cluster_groups$RM2018_02_PCT[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_02a_PCT[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 15 to 24
+abline(h = cluster_groups$RM2018_02a_PCT[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_03[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 25 to 44
+abline(h = cluster_groups$RM2018_03[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_04[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 45 to 64
+abline(h = cluster_groups$RM2018_04[9], col = "red" , lwd=4)
+
+barplot(cluster_groups$RM2018_05[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 65 to 89
+abline(h = cluster_groups$RM2018_05[9], col = "red" , lwd=4)
 
 barplot(cluster_groups$RM2018_06[1:8], names.arg= c(1:8), col = "blue" )#  Persons aged 90 plus
 abline(h = cluster_groups$RM2018_06[9], col = "red" , lwd=4)
