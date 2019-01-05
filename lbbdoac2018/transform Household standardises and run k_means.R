@@ -7,7 +7,7 @@ library(car)
 library(gtools)
 
 rm(list = ls())
-setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+setwd("C:\\R_projects\\OAC\\2011OAC\\lbbdoac2018")
 
 ## get preprepared varisbles created from R script "prepare RM2018Household raw variabes.R
 
@@ -19,7 +19,7 @@ str(RM2018_OAC_input)
 
 ## get variable lookup table
 
-RM2018OAC_Input_Lookup <- read.csv("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/2018_Postcode_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
+RM2018OAC_Input_Lookup <- read.csv("2018_Postcode_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
 
 
 
@@ -229,11 +229,11 @@ if(RQTRANSFORMATION =="BOXCOX")
   RM2018_OAC_PCT_RATIO_BC_Lambda[,1]<- data.frame(K_Var[,2])
   colnames(RM2018_OAC_PCT_RATIO_BC_Lambda)<-c("Variable", "Lambda Value")
   dir.create("Transformation Data", showWarnings = FALSE)
-  write.table(RM2018_OAC_PCT_RATIO_BC_Lambda, paste("lbbdoac/lbbdoac2018/Transformation Data/Percentages Household Box-Cox Lambda Values.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+  write.table(RM2018_OAC_PCT_RATIO_BC_Lambda, paste("Transformation Data/Percentages Household Box-Cox Lambda Values.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
   
   if(RQOUTPUT=="YES")
   {
-    dir.create("lbbdoac/lbbdoac2018/Pre-Cluster Data", showWarnings = FALSE)
+    dir.create("Pre-Cluster Data", showWarnings = FALSE)
     write.table(RM2018_OAC_PCT_RATIO_BC, paste("Pre-Cluster Data/02_RM2018_Household_Household_Box_Cox_Transformed.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
   }
   

@@ -39,7 +39,7 @@ OAC_Input <- OA_LAD_RegionLUP
 
 #Which Transformation technique would you like to use - Inverse Hyperbolic Sine (IHS) or Box-Cox?
 #Enter "IHS" or "BOXCOX"
-RQTRANSFORMATION <- "IHS"
+RQTRANSFORMATION <- "BOXCOX"
 
 #Save Percentage, IHS/Box-Cox and Range CSV Files with Clustered R.Data file?
 #Enter "YES" or "NO"
@@ -124,8 +124,8 @@ OAC_Input_PCT_RATIO <- replace(OAC_Input_PCT_RATIO, is.na(OAC_Input_PCT_RATIO), 
 
 if(RQOUTPUT=="YES")
 {
-  dir.create("lbbddata/Pre-Cluster Data", showWarnings = FALSE)
-  write.table(OAC_Input_PCT_RATIO, paste("lbbddata/Pre-Cluster Data/01_OAC_Percentages.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+  dir.create("Pre-Cluster Data", showWarnings = FALSE)
+  write.table(OAC_Input_PCT_RATIO, paste("Pre-Cluster Data/01_OAC_Percentages.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
 }
 
 ####################################################################################################

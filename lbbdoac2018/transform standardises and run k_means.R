@@ -228,11 +228,11 @@ if(RQTRANSFORMATION =="BOXCOX")
   RM2018_OAC_PCT_RATIO_BC_Lambda[,1]<- data.frame(K_Var[,2])
   colnames(RM2018_OAC_PCT_RATIO_BC_Lambda)<-c("Variable", "Lambda Value")
   dir.create("Transformation Data", showWarnings = FALSE)
-  write.table(RM2018_OAC_PCT_RATIO_BC_Lambda, paste("lbbdoac/lbbdoac2018/Transformation Data/Percentages Box-Cox Lambda Values.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
+  write.table(RM2018_OAC_PCT_RATIO_BC_Lambda, paste("Transformation Data/Percentages Box-Cox Lambda Values.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
   
   if(RQOUTPUT=="YES")
   {
-    dir.create("lbbdoac/lbbdoac2018/Pre-Cluster Data", showWarnings = FALSE)
+    dir.create("Pre-Cluster Data", showWarnings = FALSE)
     write.table(RM2018_OAC_PCT_RATIO_BC, paste("Pre-Cluster Data/02_RM2018_OAC_Percentages_Box_Cox_Transformed.csv", sep = ""), sep = ",", row.names= FALSE, col.names = TRUE, qmethod = "double")
   }
   
