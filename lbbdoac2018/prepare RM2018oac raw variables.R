@@ -8,7 +8,7 @@ library(gtools)
 
 rm(list = ls())
 
-setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+setwd("C:\\R_projects\\OAC\\2011OAC\\lbbdoac2018")
 
 
 
@@ -44,7 +44,7 @@ census_OAC_Input <- OA_LAD_RegionLUP
 
 ## get variable lookup table
 
-RM2018OAC_Input_Lookup <- read.csv("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/2018_OAC_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
+RM2018OAC_Input_Lookup <- read.csv("2018_OAC_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
 ## create Raw Variables
 
 Total_Population <- rm2018person %>% 
