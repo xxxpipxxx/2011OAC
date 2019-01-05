@@ -7,7 +7,7 @@ library(car)
 library(gtools)
 
 rm(list = ls())
-setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+setwd("C:\\R_projects\\OAC\\2011OAC\\lbbdoac2018")
 
 ## get preprepared varisbles created from R script "prepare RM2018oac raw variabes.R
 
@@ -19,7 +19,7 @@ str(RM2018_OAC_input)
 
 ## get variable lookup table
 
-RM2018OAC_Input_Lookup <- read.csv("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/2018_OAC_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
+RM2018OAC_Input_Lookup <- read.csv("2018_OAC_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
 ## create Raw Variables
 
 

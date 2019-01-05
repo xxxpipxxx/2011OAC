@@ -6,7 +6,7 @@ library(data.table)
 
 rm(list = ls())
 
-setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+setwd("C:\\R_projects\\OAC\\2011OAC\\lbbdoac2018")
 
 
 ## get pre cluster percents and counts
