@@ -4,13 +4,15 @@ library(tidyr)
 library(data.table)
 library(clustMixType) ## for plots
 library(klaR) # for k modes
+library(dplyr)
 
 rm(list = ls()) 
 
-setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+#setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+setwd("C:\\Users\\pcanham\\OneDrive - London Borough of Barking and Dagenham\\My documents\\LBBDOAC2018")
 
 
-RM2018individual_raw_input <- read.csv("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/2018_Individual_Raw_Variables.csv")
+RM2018individual_raw_input <- read.csv("2018_Individual_Raw_Variables_addedcluster.csv")
 names(RM2018individual_raw_input)
 
 
@@ -34,7 +36,9 @@ cluster <- cluster_individual$cluster
 RM2018individual_raw_input$Cluster <- cluster
 
 ## save rawdata
-fwrite(RM2018individual_raw_input, "Cluster Data/RM2018individual_raw_input_clustered.csv")
+
+
+fwrite(RM2018individual_raw_input, "2011OAC\\lbbdoac2018\\cluster data\\RM2018individual_raw_input_clustered.csv")
 
 
 

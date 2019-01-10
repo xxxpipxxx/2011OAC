@@ -6,12 +6,14 @@ library(data.table)
 
 rm(list = ls())
 
-setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+#setwd("C:\\R_projects\\OAC\\lbbdoac\\lbbdoac2018")
+setwd("C:\\Users\\pcanham\\OneDrive - London Borough of Barking and Dagenham\\My documents\\LBBDOAC2018")
 
 
 ## get individual counts and clusters
 
-RM2018Individual_Input_Clusterered <- fread("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/Cluster Data/RM2018individual_raw_input_clustered.csv")
+#RM2018Individual_Input_Clusterered <- fread("file:///C:/R_projects/OAC/lbbdoac/lbbdoac2018/Cluster Data/RM2018individual_raw_input_clustered.csv")
+RM2018Individual_Input_Clusterered <- fread("file:///C:/Users/pcanham/OneDrive - London Borough of Barking and Dagenham/My documents/LBBDOAC2018/2011OAC/lbbdoac2018/cluster data/RM2018individual_raw_input_clustered.csv")
 names(RM2018Individual_Input_Clusterered)
 
 
@@ -19,7 +21,7 @@ names(RM2018Individual_Input_Clusterered)
 RM2018Individual_Input_Clusterered <- RM2018Individual_Input_Clusterered %>%
   mutate_if(is.integer,as.numeric)## get variable lookup table
 
-RM2018OAC_Input_Lookup <- read.csv("2018_Postcode_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
+RM2018OAC_Input_Lookup <- read.csv("2011OAC\\lbbdoac2018\\2018_Postcode_Raw_Variables_Lookup.csv", sep=",", stringsAsFactors = F)
 
 
 compare_clusters <- RM2018Individual_Input_Clusterered[-1] %>% 
